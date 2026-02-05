@@ -100,7 +100,7 @@
             display: none; border-radius: 10px; pointer-events: none;
         }
 
-        /* FOOTER UNIFICADO (Evita traslapes de botones) */
+        /* FOOTER UNIFICADO CORREGIDO */
         .footer-controles {
             width: 100%;
             display: flex;
@@ -108,7 +108,7 @@
             align-items: center;
             padding-bottom: calc(75px + env(safe-area-inset-bottom));
             z-index: 20;
-            background: linear-gradient(transparent, var(--color-fondo-app) 20%);
+            /* Se eliminó el degradado que tapaba el banner */
         }
 
         .enlace-web {
@@ -242,7 +242,6 @@
             guia.style.display = 'block'; 
             btn.style.opacity = "0.5";
 
-            // El espacio vacío siempre es el último (15) para que sea resoluble
             piezas = Array.from({length: size * size}, (_, i) => i);
             renderizarPuzzle();
 

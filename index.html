@@ -92,7 +92,12 @@
             box-sizing: border-box;
         }
 
-        .pieza.vacia { background: #d15616 !important; cursor: default; border: none; }
+        /* CAMBIO SOLICITADO: Cuadro libre ahora es Blanco */
+        .pieza.vacia { 
+            background: #FFFFFF !important; 
+            cursor: default; 
+            border: none; 
+        }
 
         #guia-imagen {
             position: absolute; width: 100%; height: 100%;
@@ -100,7 +105,6 @@
             display: none; border-radius: 10px; pointer-events: none;
         }
 
-        /* FOOTER UNIFICADO CORREGIDO */
         .footer-controles {
             width: 100%;
             display: flex;
@@ -108,7 +112,6 @@
             align-items: center;
             padding-bottom: calc(75px + env(safe-area-inset-bottom));
             z-index: 20;
-            /* Se eliminó el degradado que tapaba el banner */
         }
 
         .enlace-web {

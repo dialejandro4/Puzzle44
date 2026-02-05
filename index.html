@@ -6,7 +6,7 @@
     <title>PUZZLE44 - Leonidas Name</title>
 
     <meta property="og:title" content="PUZZLE44 - El Rompecabezas">
-    <meta property="og:description" content="Ordena las piezas y completa el reto de Leonidas Name. ¿Podrás hacerlo en tiempo récord?">
+    <meta property="og:description" content="Ordena las piezas y completa el reto">
     <meta property="og:image" content="https://leonidasnamegomez.github.io/Puzzle44/miniatura.jpg">
     <meta property="og:url" content="https://leonidasnamegomez.github.io/Puzzle44/">
     <meta property="og:type" content="website">
@@ -66,14 +66,14 @@
         .area-juego {
             flex: 1; display: flex; flex-direction: column; align-items: center;
             justify-content: center; width: 100%; 
-            padding-bottom: 120px;
+            padding-bottom: 10px;
         }
 
         #contenedor-puzzle {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2px;
-            width: 90vw;
+            width: 88vw;
             max-width: 340px;
             aspect-ratio: 1 / 1;
             background: rgba(255,255,255,0.3);
@@ -91,7 +91,7 @@
             box-sizing: border-box;
         }
 
-        .pieza.vacia { background: transparent !important; cursor: default; border: none; }
+        .pieza.vacia { background: #d15616 !important; cursor: default; border: none; }
 
         #guia-imagen {
             position: absolute; width: 100%; height: 100%;
@@ -99,10 +99,20 @@
             display: none; border-radius: 10px; pointer-events: none;
         }
 
+        /* Footer unificado para evitar traslapes */
+        .footer-controles {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: calc(75px + env(safe-area-inset-bottom));
+            z-index: 15;
+        }
+
         .enlace-web {
-            position: absolute; bottom: calc(72px + env(safe-area-inset-bottom)); 
             color: white; text-decoration: none; font-weight: bold; font-size: 0.8rem;
-            z-index: 20;
+            margin-top: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .banner-politico {
@@ -117,12 +127,13 @@
             background-color: var(--color-primario); color: white; 
             font-size: 1rem; font-weight: 700; border: 2px solid white; 
             border-radius: 12px; text-transform: uppercase;
+            cursor: pointer;
         }
 
         #btn-guia {
             background: white; color: var(--color-primario);
-            font-size: 0.75rem; padding: 5px 15px; width: auto; margin-bottom: 10px;
-            user-select: none; -webkit-user-select: none; opacity: 0.5;
+            font-size: 0.75rem; padding: 8px 20px; width: auto; margin-bottom: 15px;
+            user-select: none; -webkit-user-select: none; opacity: 1;
         }
 
         #mensaje-victoria {
@@ -150,36 +161,38 @@
 
     <div id="pantalla-menu" class="pantalla" style="display: none;">
         <div class="cabecera-titulo"><h1 class="texto-sombra">PUZZLE44</h1></div>
-        <div style="position: absolute; bottom: calc(115px + env(safe-area-inset-bottom)); width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <button onclick="iniciarJuego()">Iniciar Juego</button>
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; width: 100%;">
+            <div class="footer-controles">
+                <button onclick="iniciarJuego()">Iniciar Juego</button>
+                <a href="https://www.leonidasnamegomez.com" target="_blank" class="enlace-web">www.leonidasnamegomez.com</a>
+            </div>
         </div>
-        <a href="https://www.leonidasnamegomez.com" target="_blank" class="enlace-web">www.leonidasnamegomez.com</a>
         <div class="banner-politico"></div>
     </div>
 
     <div id="pantalla-juego" class="pantalla" style="display: none;">
         <div class="cabecera-titulo"><h1 class="texto-sombra">PUZZLE44</h1></div>
         <div class="instrucciones-juego">
-            <strong>REGLAS:</strong> Desliza las piezas hasta formar la imagen. La esquina inferior derecha queda libre.
+            <strong>REGLAS:</strong> Desliza las piezas. La esquina inferior derecha es el espacio libre.
         </div>
 
         <div class="area-juego">
-            <button id="btn-guia" onmousedown="controlGuia(true)" onmouseup="controlGuia(false)" onmouseleave="controlGuia(false)" ontouchstart="controlGuia(true)" ontouchend="controlGuia(false)">VER GUÍA 👁️</button>
+            <button id="btn-guia" onmousedown="controlGuia(true)" onmouseup="controlGuia(false)" onmouseleave="controlGuia(false)" ontouchstart="controlGuia(true)" ontouchend="controlGuia(false)">MANTENER PARA VER GUÍA 👁️</button>
             
             <div id="contenedor-puzzle">
                 <div id="guia-imagen"></div>
             </div>
-            
-            <div style="display:flex; flex-direction: column; align-items: center; width:100%; margin-top: 15px;">
-                <div style="display:flex; gap:10px; width:90%; justify-content:center;">
-                    <button onclick="location.reload()" style="width:48%; font-size: 0.85rem; padding: 8px;">Menú</button>
-                    <button onclick="reiniciarJuego()" style="width:48%; font-size: 0.85rem; padding: 8px;">Reiniciar</button>
-                </div>
-                <button onclick="compartirJuego()" style="width:90%; margin-top: 8px; font-size: 0.85rem; padding: 10px;">COMPARTIR JUEGO</button>
-            </div>
         </div>
 
-        <a href="https://www.leonidasnamegomez.com" target="_blank" class="enlace-web">www.leonidasnamegomez.com</a>
+        <div class="footer-controles">
+            <div style="display:flex; gap:10px; width:85%; justify-content:center;">
+                <button onclick="location.reload()" style="width:48%; font-size: 0.85rem; padding: 10px;">Menú</button>
+                <button onclick="reiniciarJuego()" style="width:48%; font-size: 0.85rem; padding: 10px;">Reiniciar</button>
+            </div>
+            <button onclick="compartirJuego()" style="width:85%; margin-top: 8px; font-size: 0.85rem; padding: 10px;">COMPARTIR JUEGO</button>
+            <a href="https://www.leonidasnamegomez.com" target="_blank" class="enlace-web">www.leonidasnamegomez.com</a>
+        </div>
+
         <div class="banner-politico"></div>
     </div>
 
@@ -308,8 +321,12 @@
 
         function compartirJuego() {
             const url = window.location.href;
-            if (navigator.share) navigator.share({ title: 'PUZZLE44', url: url });
-            else { navigator.clipboard.writeText(url); alert("¡Enlace copiado!"); }
+            if (navigator.share) {
+                navigator.share({ title: 'PUZZLE44', url: url }).catch(() => {});
+            } else { 
+                navigator.clipboard.writeText(url); 
+                alert("¡Enlace copiado al portapapeles!"); 
+            }
         }
 
         setTimeout(() => {
